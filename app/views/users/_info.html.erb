@@ -11,5 +11,14 @@
 </table>
 
 <div class='row'>
-  <%= link_to '',edit_user_path(user),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{user.id}" %>
+  <% if current_user == user %>
+    <%= link_to '',edit_user_path(user),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{user.id}" %>
+  <% end %>
 </div>
+<% if current_user != user %>
+  <% if current_user.following?(user) %>
+    <%= link_to 'フォロー外す', user_relationship_path(user.id), method: :delete, class: "btn btn-info" %>
+  <% else %>
+    <%= link_to 'フォローする', user_relationships_path(user.id), method: :Post, class: "btn btn-success" %>
+  <% end %>
+<% end %>
