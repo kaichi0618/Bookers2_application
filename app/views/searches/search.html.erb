@@ -1,0 +1,30 @@
+<h2><%= @range %>s search for "<%= @word %>"</h2>
+<table class="table">
+    <% if @range == "User" %>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Introduction</th>
+        </tr>
+        <% @users.each do |user| %>
+        <tr>
+            <td><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %></td>
+            <td><%= user.name %></td>
+            <td><%= user.introduction %></td>
+        </tr>
+        <% end %>
+    <% else %>
+        <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Opinion</th>
+        </tr>
+        <% @books.each do |book| %>
+        <tr>
+            <td><%= attachment_image_tag(book.user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %></td>
+            <td><%= book.title %></td>
+            <td><%= book.body %></td>
+        </tr>
+        <% end %>
+    <% end %>
+</table>
