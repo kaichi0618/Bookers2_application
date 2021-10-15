@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   end
 
   get 'search' => "searches#search"
-
+  resources :groups, only: [:new, :create, :edit, :update]
+  # ルーティング設定中
 end
